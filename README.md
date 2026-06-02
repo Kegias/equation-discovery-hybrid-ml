@@ -31,6 +31,32 @@ Instead of using a neural network as a black-box final predictor, this project u
 
 ## System Studied: Van der Pol Oscillator
 
+
+---
+
+## Methodology
+
+The project follows a four-stage pipeline.
+
+### 1. Simulate noisy dynamical-system data
+
+A clean Van der Pol trajectory is generated using numerical integration. Controlled observational noise is then added to simulate realistic measurement conditions.
+
+### 2. Learn a smoothed trajectory representation
+
+A neural network is trained to approximate the noisy state trajectories. The purpose of the neural network is not to replace equation discovery, but to reduce the effect of noise before derivative estimation.
+
+### 3. Estimate derivatives
+
+Derivatives are estimated from the smoothed trajectory rather than directly from noisy measurements. This helps reduce the noise amplification that usually occurs during numerical differentiation.
+
+### 4. Discover sparse governing equations
+
+A polynomial candidate library is constructed using terms such as:
+
+```text
+1, x, y, x², xy, y², x²y
+
 The Van der Pol oscillator is defined as:
 
 ```text
